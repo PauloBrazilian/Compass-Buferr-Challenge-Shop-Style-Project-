@@ -1,4 +1,4 @@
-package shopstyle.mscustomer.domain.model;
+package shopstyle.mscustomer.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,7 +15,7 @@ public class Address {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private float id;
+    private Long id;
 
     @Column(name = "STATE")
     private String state;
@@ -38,7 +38,7 @@ public class Address {
     @Column(name = "COMPLEMENT")
     private String complement;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Customer.class)
     @Column(name = "CUSTOMER_ID")
     private Customer customer;
 

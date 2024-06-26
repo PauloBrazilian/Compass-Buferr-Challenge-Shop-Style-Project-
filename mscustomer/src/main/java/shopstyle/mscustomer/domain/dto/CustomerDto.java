@@ -1,8 +1,8 @@
-package shopstyle.mscustomer.domain.payload;
+package shopstyle.mscustomer.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -18,31 +18,32 @@ import java.time.LocalDate;
 @Builder
 public class CustomerDto {
 
-    @CPF
+    @CPF(message = "Invalid CPF format. It should be xxx.xxx.xxx-xx")
     @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", message = "Invalid CPF format. It should be xxx.xxx.xxx-xx")
-    private float cpf;
+    private Long cpf;
 
-    @NotNull(message = "The firstName is null")
-    @Size(min = 3, message = "FirstName should have at least 3 characters")
+    @NotBlank(message = "The firstName is null")
+    @Size(min = 4, message = "FirstName should have at least 4 characters")
     private String firstName;
 
-    @NotNull(message = "The LastName is null")
-    @Size(min = 3, message = "LastName should have at least 3 characters")
+    @NotBlank(message = "The LastName is null")
+    @Size(min = 4, message = "LastName should have at least 4 characters")
     private String lastName;
 
-    @Pattern(regexp = "Masculino|Feminino", message = "Sex must be either 'Masculino' or 'Feminino'")
+    @NotBlank(message = "Sex must be either 'Masculino' or 'Feminino'")
     private String sex;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate birthdate;
 
     @Email(message = "Email should be in the format: xxxx@gmail.com")
+    @Pattern(regexp = "\\w.@gmail.com", message = "Invalid Email format. It should be xxx@gmail.com")
     private String email;
 
-    @Size(min = 6, message = "Password should have at least 6 characters")
+    @Size(min = 8, message = "Password should have at least 8 characters")
     private String password;
 
-    @NotNull(message = "Active field must not be null")
+    @NotBlank(message = "Active field must not be null")
     private Boolean active;
 
 }
