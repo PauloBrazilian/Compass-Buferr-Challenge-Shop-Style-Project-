@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
+import shopstyle.mscustomer.domain.util.GenderEnum;
 
 import java.time.LocalDate;
 
@@ -18,9 +19,9 @@ import java.time.LocalDate;
 @Builder
 public class CustomerDto {
 
-    @CPF(message = "Invalid CPF format. It should be xxx.xxx.xxx-xx")
+    @CPF(message = "Invalid CPF.")
     @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", message = "Invalid CPF format. It should be xxx.xxx.xxx-xx")
-    private Long cpf;
+    private String cpf;
 
     @NotBlank(message = "The firstName is null")
     @Size(min = 4, message = "FirstName should have at least 4 characters")
@@ -31,12 +32,12 @@ public class CustomerDto {
     private String lastName;
 
     @NotBlank(message = "Sex must be either 'Masculino' or 'Feminino'")
-    private String sex;
+    private GenderEnum sex;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate birthdate;
 
-    @Email(message = "Email should be in the format: xxxx@gmail.com")
+    @Email(message = "Invalid Email.")
     @Pattern(regexp = "\\w.@gmail.com", message = "Invalid Email format. It should be xxx@gmail.com")
     private String email;
 

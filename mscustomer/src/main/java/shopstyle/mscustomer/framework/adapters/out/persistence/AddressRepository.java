@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 import shopstyle.mscustomer.domain.entity.Address;
 
 
-public interface AddressRepository extends JpaRepository<Address, Float> {
+public interface AddressRepository extends JpaRepository<Address, Long> {
+
 }

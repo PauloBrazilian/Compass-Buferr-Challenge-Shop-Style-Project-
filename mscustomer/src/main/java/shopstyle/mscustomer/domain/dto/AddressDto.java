@@ -1,5 +1,6 @@
 package shopstyle.mscustomer.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
@@ -35,6 +36,7 @@ public class AddressDto {
     private String complement;
 
     @NotBlank(message = "The customer is null")
-    private CustomerDto customer;
+    @JsonProperty("customerId")
+    private Long customerId;
 
 }

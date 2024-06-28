@@ -8,7 +8,6 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 public class Address {
 
@@ -39,7 +38,7 @@ public class Address {
     private String complement;
 
     @ManyToOne(targetEntity = Customer.class)
-    @Column(name = "CUSTOMER_ID")
+    @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
 

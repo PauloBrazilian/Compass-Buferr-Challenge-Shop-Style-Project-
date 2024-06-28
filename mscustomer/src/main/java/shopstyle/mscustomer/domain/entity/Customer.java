@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
+import shopstyle.mscustomer.domain.util.GenderEnum;
 
 import java.time.LocalDate;
 
@@ -14,7 +15,6 @@ import java.time.LocalDate;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 public class Customer {
 
@@ -28,14 +28,15 @@ public class Customer {
     private String cpf;
 
     @Column(name = "FIRST_NAME")
-    @Size(min = 3,max = 50, message = "Nome deve ter entre {min} e {max} caracteres")
+    @Size(min = 3, max = 50, message = "Nome deve ter entre {min} e {max} caracteres")
     private String firstName;
 
     @Column(name = "LAST_NAME")
     private String lastName;
 
     @Column(name = "SEX")
-    private String sex;
+    @Enumerated(EnumType.STRING)
+    private GenderEnum sex;
 
     @Column(name = "BIRTHDATE")
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)

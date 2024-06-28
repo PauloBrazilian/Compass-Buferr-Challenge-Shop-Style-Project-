@@ -4,10 +4,10 @@ import shopstyle.mscustomer.domain.dto.CustomerDto;
 
 public interface CustomerService {
 
-    public CustomerDto findCustomerById(Long id);
+    CustomerDto findCustomerById(Long id);
 
-    public CustomerDto createCustomer(CustomerDto customerDto);
+    CustomerDto createCustomer(CustomerDto customerDto);
 
-    public CustomerDto updateCustomer(Long id, CustomerDto customerDto);
+    CustomerDto updateCustomer(Long id, CustomerDto customerDto);
 
 }
