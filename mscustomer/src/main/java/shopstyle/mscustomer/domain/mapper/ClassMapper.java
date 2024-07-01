@@ -17,10 +17,10 @@ public interface ClassMapper {
 
     void updateCustomerToDto(CustomerDto customerDto, @MappingTarget Customer customer);
 
-    @Mapping(target = "customerId", source = "customer")
+    @Mapping(target = "customerId", source = "id")
     AddressDto addressToDto(Address address);
 
-    @Mapping(target = "customer", ignore = true)
+    @Mapping(target = "id", source = "customerId")
     Address dtoToAddress(AddressDto addressDto);
 
     void updateAddressToDto(AddressDto addressDto, @MappingTarget Address address);
