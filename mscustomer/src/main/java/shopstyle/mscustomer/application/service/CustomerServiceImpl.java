@@ -23,8 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto findCustomerById(Long id) {
-        var customer = repository.findById(id).orElseThrow(
-                CustomerNotFoundException::new);
+        var customer = repository.findById(id).orElseThrow(CustomerNotFoundException::new);
         return mapper.customerToDto(customer);
     }
 
