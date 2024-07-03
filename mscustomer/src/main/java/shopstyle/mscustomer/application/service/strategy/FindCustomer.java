@@ -8,7 +8,7 @@ import shopstyle.mscustomer.framework.exception.CustomerNotFoundException;
 
 @AllArgsConstructor
 @Service
-public class FindAddress {
+public class FindCustomer {
 
     private final CustomerRepository customerRepository;
 

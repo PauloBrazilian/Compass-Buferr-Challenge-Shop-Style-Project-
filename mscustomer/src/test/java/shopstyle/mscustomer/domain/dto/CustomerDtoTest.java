@@ -1,7 +1,7 @@
 package shopstyle.mscustomer.domain.dto;
 
 import org.junit.jupiter.api.Test;
-import shopstyle.mscustomer.domain.util.GenderEnum;
+import shopstyle.mscustomer.domain.enums.GenderEnum;
 
 import java.time.LocalDate;
 

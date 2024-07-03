@@ -6,7 +6,7 @@ import shopstyle.mscustomer.application.ports.in.CustomerService;
 import shopstyle.mscustomer.domain.dto.CustomerDto;
 import shopstyle.mscustomer.domain.entity.Customer;
 import shopstyle.mscustomer.domain.mapper.ClassMapper;
-import shopstyle.mscustomer.domain.util.GenderEnum;
+import shopstyle.mscustomer.domain.enums.GenderEnum;
 import shopstyle.mscustomer.framework.adapters.out.persistence.CustomerRepository;
 import shopstyle.mscustomer.framework.exception.CustomerNotFoundException;
 import shopstyle.mscustomer.framework.exception.GenderNotFoundException;

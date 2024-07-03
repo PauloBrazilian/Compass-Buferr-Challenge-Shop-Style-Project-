@@ -1,4 +1,4 @@
-package shopstyle.mscustomer.domain.util;
+package shopstyle.mscustomer.domain.enums;
 
 public enum GenderEnum {
 

@@ -1,4 +1,4 @@
-package shopstyle.mscustomer.domain.util;
+package shopstyle.mscustomer.domain.enums;
 
 import org.junit.jupiter.api.Test;
 

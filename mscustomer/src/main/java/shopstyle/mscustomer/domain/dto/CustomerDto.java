@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
-import shopstyle.mscustomer.domain.util.GenderEnum;
+import shopstyle.mscustomer.domain.enums.GenderEnum;
 
 import java.time.LocalDate;
 
