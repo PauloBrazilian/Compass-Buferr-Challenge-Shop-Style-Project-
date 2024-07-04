@@ -14,14 +14,14 @@ public class CustomerController {
 
     private CustomerServiceImpl service;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CustomerDto> findCustomerById(@PathVariable Long id) {
-        return new ResponseEntity<>(service.findCustomerById(id), HttpStatus.OK);
-    }
-
     @PostMapping
     public ResponseEntity<CustomerDto> createCustomer(@RequestBody CustomerDto customerDto) {
         return new ResponseEntity<>(service.createCustomer(customerDto), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerDto> findCustomerById(@PathVariable Long id) {
+        return new ResponseEntity<>(service.findCustomerById(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
