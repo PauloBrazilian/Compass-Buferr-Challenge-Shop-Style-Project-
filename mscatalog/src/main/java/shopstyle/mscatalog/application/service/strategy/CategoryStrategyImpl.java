@@ -1,26 +1,29 @@
 package shopstyle.mscatalog.application.service.strategy;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import shopstyle.mscatalog.application.ports.out.CategoryStrategy;
 import shopstyle.mscatalog.domain.model.Category;
+import shopstyle.mscatalog.framework.adapters.out.persistence.CategoryRepository;
 
+@AllArgsConstructor
 @Service
-public class CategoryStrategyImpl {
-    
+public class CategoryStrategyImpl implements CategoryStrategy{
 
-    if (categoryRepository.exists(Category)) {
-        if (Category.getActive() == true) {
-            if (categoryRepository.exists(Category.getParent)) {
-                return categoryRepository.existsById(id);
-            } else {
-                throw new RuntimeException("Category have exists Parent, Only category not parents is save");
-            }
-        } else {
-            throw new RuntimeException("Cateogory is not active");
-        }
-    } else {
-        throw new RuntimeException("Categody Not Found");
+    private final CategoryRepository repository;
+
+    @Override
+    public Category findCategoryById(Long id) {
+        return repository.findById(id).orElseThrow(CategoryNotFoundException::new);
     }
 
+    @Override
+    public Category onActive(Boolean active) {
+        return repository.getActiveInCategory(active).orElseThrow(CategoryIsNotActiveException::new);
+    }
 
-
+    @Override
+    public Category existsParentInCategory(Category parent) {
+        return repository.getParentInCategory(parent.getId()).orElseThrow(CategoryIsParentExistsException::new);
+    }
 }
