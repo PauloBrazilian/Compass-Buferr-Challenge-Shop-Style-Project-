@@ -4,10 +4,8 @@ import shopstyle.mscatalog.domain.model.Category;
 
 public interface CategoryStrategy {
 
-    Category findCategoryById(Long id);
+    void onActive(Boolean active);
 
-    Category onActive(Boolean active);
-
-    Category existsParentInCategory(Category parent);
+    void existsParentInCategory(Category parent);
 
 }

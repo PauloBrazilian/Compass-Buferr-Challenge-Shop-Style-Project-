@@ -1,13 +1,16 @@
 package shopstyle.mscatalog.framework.adapters.out.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import shopstyle.mscatalog.domain.model.Category;
 
-import java.util.Optional;
+import java.util.List;
 
+@Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-    Optional<Object> getActiveInCategory(Boolean active);
+    List<Category> findByActive(Boolean active);
 
-    Optional<Object> getParentInCategory(Long parent);
+    List<Category> findByParentIn(List<Category> parent);
+
 }

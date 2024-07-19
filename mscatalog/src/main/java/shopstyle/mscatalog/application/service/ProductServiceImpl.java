@@ -3,11 +3,14 @@ package shopstyle.mscatalog.application.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import shopstyle.mscatalog.application.ports.in.ProductService;
+import shopstyle.mscatalog.application.service.strategy.CategoryStrategyImpl;
 import shopstyle.mscatalog.domain.dto.ProductDto;
 import shopstyle.mscatalog.domain.mapper.ClassMapper;
 import shopstyle.mscatalog.domain.model.Category;
 import shopstyle.mscatalog.framework.adapters.out.persistence.CategoryRepository;
 import shopstyle.mscatalog.framework.adapters.out.persistence.ProductRepository;
+import shopstyle.mscatalog.framework.exception.CategoryNotFoundException;
+import shopstyle.mscatalog.framework.exception.ProductNotFoundException;
 
 import java.util.List;
 
@@ -15,7 +18,8 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    private final CategoryRepository categoryRepository;
+    private CategoryStrategyImpl strategy;
+    private CategoryRepository categoryRepository;
     private final ProductRepository repository;
     private final ClassMapper mapper;
 
@@ -23,6 +27,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto createProduct(ProductDto productDto) {
         var product = mapper.dtoToProduct(productDto);
+        product.setCategory(verificationCategory(product.getCategory()));
         repository.save(product);
         return mapper.productToDto(product);
     }
@@ -51,4 +56,13 @@ public class ProductServiceImpl implements ProductService {
         var product = repository.findById(id).orElseThrow(ProductNotFoundException::new);
         repository.deleteById(product.getId());
     }
+
+    private Category verificationCategory(Category category){
+        var response = categoryRepository.findById(category.getId()).orElseThrow(CategoryNotFoundException::new);
+        strategy.onActive(response.getActive());
+        strategy.existsParentInCategory(response);
+        return response;
+    }
+
+
 }

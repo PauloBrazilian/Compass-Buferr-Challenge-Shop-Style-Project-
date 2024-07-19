@@ -3,21 +3,16 @@ package shopstyle.mscatalog.domain.dto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDto {
+public class ParentDto {
 
     @NotBlank
-    private String name;
+    private String parentName;
 
     @NotBlank
-    private Boolean active;
-
-    private ParentDto parents;
-
+    private Boolean parentActive;
 }

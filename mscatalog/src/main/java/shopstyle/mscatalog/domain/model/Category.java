@@ -2,13 +2,17 @@ package shopstyle.mscatalog.domain.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.query.named.FetchMemento;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@SecondaryTable(name = "parent")
+@SecondaryTable(name = "Parent")
 @Entity
 public class Category {
 
@@ -23,14 +27,14 @@ public class Category {
     @Column(name = "ACTIVE")
     private Boolean active;
 
-    @Column(name = "PARENT_NAME", table = "parent")
+    @Column(name = "NAME", table = "parent")
     private String parentName;
 
-    @Column(name = "PARENT_ACTIVE", table = "parent")
+    @Column(name = "ACTIVE", table = "parent")
     private Boolean parentActive;
 
-    @ManyToOne
-    @JoinColumn(name = "PARENT_ID", table = "Parent")
+    @ManyToOne(targetEntity = Category.class)
+    @JoinColumn(name = "PARENT")
     private Category parent;
 
 }

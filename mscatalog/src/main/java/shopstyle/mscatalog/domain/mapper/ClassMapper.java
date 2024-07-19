@@ -15,7 +15,9 @@ import shopstyle.mscatalog.domain.model.Sku;
 @Mapper(componentModel = "spring")
 public interface ClassMapper {
 
+    @Mapping(target = "parents", source = "parent")
     CategoryDto categoryToDto(Category category);
+    @Mapping(target = "parent", source = "parents")
     Category dtoToCategory(CategoryDto categoryDto);
     void updateCategoryToDto(CategoryDto categoryDto, @MappingTarget Category category);
 
