@@ -2,10 +2,6 @@ package shopstyle.mscatalog.domain.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.query.named.FetchMemento;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

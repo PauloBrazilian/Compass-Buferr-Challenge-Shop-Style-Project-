@@ -11,33 +11,33 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/v1/product")
 public class ProductController {
 
     private final ProductServiceImpl serviceImpl;
 
     @PostMapping
-    public ResponseEntity<ProductDto> createProduct(ProductDto productDto) {
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
         return new ResponseEntity<>(serviceImpl.createProduct(productDto), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductDto>> findAllProducts(ProductDto productDto) {
+    public ResponseEntity<List<ProductDto>> findAllProducts(@RequestBody ProductDto productDto) {
         return new ResponseEntity<>(serviceImpl.findAllProducts(productDto), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> findProductById(Long id) {
+    public ResponseEntity<ProductDto> findProductById(@PathVariable Long id) {
         return new ResponseEntity<>(serviceImpl.findProductById(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProductById(Long id, ProductDto productDto) {
+    public ResponseEntity<ProductDto> updateProductById(@PathVariable Long id, @RequestBody ProductDto productDto) {
         return new ResponseEntity<>(serviceImpl.updateProductById(id, productDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProductById(Long id) {
+    public ResponseEntity<String> deleteProductById(@PathVariable Long id) {
         serviceImpl.deleteProductById(id);
         return new ResponseEntity<>("Product deleted Successfully", HttpStatus.OK);
     }

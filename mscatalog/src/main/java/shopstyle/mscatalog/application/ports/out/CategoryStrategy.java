@@ -2,10 +2,12 @@ package shopstyle.mscatalog.application.ports.out;
 
 import shopstyle.mscatalog.domain.model.Category;
 
+import java.util.List;
+
 public interface CategoryStrategy {
 
-    void onActive(Boolean active);
+    List<Category> onActive(Boolean active);
 
-    void existsParentInCategory(Category parent);
+    List<Category> existsParentInCategory(Category parent);
 
 }

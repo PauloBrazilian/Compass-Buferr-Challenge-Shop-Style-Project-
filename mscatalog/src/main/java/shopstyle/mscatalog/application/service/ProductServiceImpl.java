@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService {
         repository.deleteById(product.getId());
     }
 
-    private Category verificationCategory(Category category){
+    private Category verificationCategory(Category category) {
         var response = categoryRepository.findById(category.getId()).orElseThrow(CategoryNotFoundException::new);
         strategy.onActive(response.getActive());
         strategy.existsParentInCategory(response);

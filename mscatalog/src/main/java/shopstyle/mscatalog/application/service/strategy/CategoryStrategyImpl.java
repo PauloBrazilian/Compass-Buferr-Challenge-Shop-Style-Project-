@@ -17,18 +17,20 @@ public class CategoryStrategyImpl implements CategoryStrategy {
     private final CategoryRepository repository;
 
     @Override
-    public void onActive(Boolean active) {
+    public List<Category> onActive(Boolean active) {
         var response = repository.findByActive(active);
         if (response.equals(true)){
+            return response;
         }else{
             throw new CategoryIsNotActiveException();
         }
     }
 
     @Override
-    public void existsParentInCategory(Category parent) {
+    public List<Category> existsParentInCategory(Category parent) {
         var response = repository.findByParentIn(List.of(parent));
-        if (!response.isEmpty()){
+        if (response.isEmpty()){
+            return response;
         }else {
             throw new CategoryIsParentExistsException();
         }

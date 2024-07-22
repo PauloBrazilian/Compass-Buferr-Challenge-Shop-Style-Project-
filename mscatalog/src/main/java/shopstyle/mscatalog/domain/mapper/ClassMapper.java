@@ -24,10 +24,11 @@ public interface ClassMapper {
     MediaDto mediaToDto(Media media);
     Media dtoToMedia(MediaDto mediaDto);
 
+    @Mapping(target = "id", source = "categoryId")
+    Product dtoToProduct(ProductDto productDto);
     @Mapping(target = "categoryId", source = "id")
     ProductDto productToDto(Product product);
     @Mapping(target = "id", source = "categoryId")
-    Product dtoToProduct(ProductDto productDto);
     void updateProductToDto(ProductDto productDto, @MappingTarget Product product);
 
     SkuDto skuToDto(Sku sku);

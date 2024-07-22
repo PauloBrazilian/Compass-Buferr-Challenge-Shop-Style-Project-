@@ -1,8 +1,7 @@
 package shopstyle.mscatalog.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Getter
@@ -12,32 +11,24 @@ import lombok.*;
 @NoArgsConstructor
 public class ProductDto {
 
-    @NotNull
-    @NotBlank
-    @JsonProperty("name")
+    @NotBlank(message = "The name cannot be empty")
+    @Size(min = 4, message = "name should have at least 4 characters")
     private String name;
 
-    @NotNull
-    @NotBlank
-    @JsonProperty("description")
+    @NotBlank(message = "The description cannot be empty")
+    @Size(min = 3, message = "The description should have at least 4 characters")
     private String description;
 
-    @NotNull
-    @NotBlank
-    @JsonProperty("brand")
+    @NotBlank(message = "The brand cannot be empty")
+    @Size(min = 3, message = "The brand should have at least 4 characters")
     private String brand;
 
-    @JsonProperty("material")
     private String material;
 
-    @NotNull
-    @NotBlank
-    @JsonProperty("active")
+    @NotBlank(message = "The active must be true or false")
     private Boolean active;
 
-    @NotNull
-    @NotBlank
-    @JsonProperty("categoryId")
+    @NotBlank(message = "The categoryId is invalid")
     private Long categoryId;
 
 }
